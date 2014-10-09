@@ -12,14 +12,12 @@ import java.sql.Statement;
 public class Sample1 {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.jdbc.Driver"); //CNFE
-
-        final String conUrl = "jdbc:mysql://localhost:3306/test";
-        Connection con = DriverManager.getConnection(conUrl, "root", "1234"); //SQLE
+        
+        Connection con = ConnectionFactory.getConnection();
 
         Statement stmt = con.createStatement();
-        java.sql.Time r;
-        ResultSet rs = stmt.executeQuery("select * from USERS");
+        
+        ResultSet rs = stmt.executeQuery("select * from employees");
 
         printResultSet(rs);
 
@@ -38,16 +36,21 @@ public class Sample1 {
             printRow(columnsCount, rs);
         }
 
-        printFooter();
+        printFooter(columnsCount);
     }
 
     private static void printHeader(int columnsCount, ResultSetMetaData rsmd) throws SQLException {
-        System.out.println("\n----------------*----------------");
-        System.out.print("|");
+        System.out.print("*");
+        for(int i = 0; i < columnsCount; i++)
+            System.out.print("---------------*");
+        System.out.print("\n|");
         for (int columnNumber = 1; columnNumber <= columnsCount; columnNumber++) {
             System.out.printf("%-15s|", rsmd.getColumnName(columnNumber));
         }
-        System.out.println("\n----------------*----------------");
+        System.out.print("\n*");
+        for(int i = 0; i < columnsCount; i++)
+            System.out.print("---------------*");
+        System.out.print("\n");
     }
 
     private static void printRow(int columnsCount, ResultSet rs) throws SQLException {
@@ -58,8 +61,11 @@ public class Sample1 {
         System.out.println("");
     }
 
-    private static void printFooter() {
-        System.out.println("|_______________*_______________|\n\n");
+    private static void printFooter(int columnsCount) {
+        System.out.print("*");
+        for(int i = 0; i < columnsCount; i++)
+            System.out.print("---------------*");
+        System.out.print("\n");
     }
 
 }
