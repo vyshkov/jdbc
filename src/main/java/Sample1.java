@@ -1,5 +1,4 @@
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -13,11 +12,11 @@ public class Sample1 {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         
-        Connection con = ConnectionFactory.getConnection();
+        Connection con = ConnectionFactoryProp.getConnection();
 
         Statement stmt = con.createStatement();
         
-        ResultSet rs = stmt.executeQuery("select * from employees");
+        ResultSet rs = stmt.executeQuery("select * from USERS");
 
         printResultSet(rs);
 

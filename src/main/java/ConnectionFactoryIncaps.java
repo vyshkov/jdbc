@@ -4,16 +4,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class ConnectionFactory {
+public class ConnectionFactoryIncaps {
 	//static reference to itself
-	private static ConnectionFactory instance = new ConnectionFactory();
-	public static final String URL = "jdbc:mysql://localhost:3306/eeexample";
+	private static ConnectionFactoryIncaps instance = new ConnectionFactoryIncaps();
+	public static final String URL = "jdbc:mysql://localhost:3306/test";
 	public static final String USER = "root";
-	public static final String PASSWORD = "root";
+	public static final String PASSWORD = "1234";
 	public static final String DRIVER_CLASS = "com.mysql.jdbc.Driver"; 
 	
 	//private constructor
-	private ConnectionFactory() {
+	private ConnectionFactoryIncaps() {
 		try {
 			Class.forName(DRIVER_CLASS);
 		} catch (ClassNotFoundException e) {
